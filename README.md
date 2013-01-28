@@ -108,9 +108,7 @@ it is going to reach a max value after which the work needed to find circles wil
 **5** The algorithm given is quite fragile, and does not always find things which look circular to humans. 
 Come up with a more robust way of tracing out the circles that detects as many of what a human observer might consider circles in images 1 and 3 (small) as possible. Concisely describe your algorithm changes. 
 
-	The problem we encounter here is that the program is too strict in determining what is a circle.
-	One common way to resolve this problem is to use a threashold value.
-	Instead of saying that ALL points on the circle must be of the same color, modify the
-	algorithm so it says that a certain figure is a circle if 95% of the points its made of are of the same color.
+>The problem we encounter here is that the program is too strict in determining what is a circle.	One common way to resolve this problem is to use a threashold value.
+Instead of saying that ALL points on the circle must be of the same color, modify the algorithm so it says that a certain figure is a circle if 95% of the points its made of are of the same color.
 
 	

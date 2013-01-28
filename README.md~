@@ -74,12 +74,13 @@ Clearly (and succinctly) describe your algorithm, using words and/or high-level 
 
 (a) **10** Experimentally measure the performance of your algorithm in relation to *n*. Use image 3 as input, and vary the last (two) command-line parameter(s) as a proxy for a range of image inputs of increas- ing size. Keep radius constant at 25. Be sure to measure only time to detect the circles, not the time to emit output. Discuss and explain the behaviour—does it match your calculated time complexity?
 
-	Blabla
+	![alt text](radius25.png "Performance graph making the radius constant but varying the working zone")
 
 
 (b) **5** Now, experimentally measure performance in terms of radius. Use image 3 again, analyzing the entire image, but varying radius from 4 up to 200. Again, plot performance and discuss the results. 
 
-	Blabla
+	![alt text](wholepicture.png "Performance graph making the radius vary between 4 and 200")
+
 
 
 #### Question 4
@@ -91,7 +92,5 @@ Come up with a more robust way of tracing out the circles that detects as many o
 	One common way to resolve this problem is to use a threashold value.
 	Instead of saying that ALL points on the circle must be of the same color, modify the
 	algorithm so it says that a certain figure is a circle if 95% of the points its made of are of the same color.
-
-	Another 
 
 	

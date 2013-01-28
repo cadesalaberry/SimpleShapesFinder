@@ -72,14 +72,24 @@ Clearly (and succinctly) describe your algorithm, using words and/or high-level 
 
 #### Question 3
 
-(a) **10** Experimentally measure the performance of your algorithm in relation to *n*. Use image 3 as input, and vary the last (two) command-line parameter(s) as a proxy for a range of image inputs of increas- ing size. Keep radius constant at 25. Be sure to measure only time to detect the circles, not the time to emit output. Discuss and explain the behaviour—does it match your calculated time complexity?
+(a) **10** Experimentally measure the performance of your algorithm in relation to *n*. Use image 3 as input, and vary the last (two) command-line parameter(s) as a proxy for a range of image inputs of increasing size. Keep radius constant at 25. Be sure to measure only time to detect the circles, not the time to emit output. Discuss and explain the behaviour—does it match your calculated time complexity?
 
-	Blabla
+![alt text](radius25.png "Performance graph making the radius constant but varying the working zone")
+
+	On the graph, the unit of time is milliseconds.
+	The x abscisse represent the number of pixel of the side of the working area.
+	The data for the graph has been collected using the shell script called profile.sh.
+
+	We get a graph following the trend of n^2 just as predicted. The bigger the area to work on is,
+	The longer it will take to the program to scan the entire image. As the radius is kept constant,
+	the time will evolve according to the area considered to work on.
 
 
 (b) **5** Now, experimentally measure performance in terms of radius. Use image 3 again, analyzing the entire image, but varying radius from 4 up to 200. Again, plot performance and discuss the results. 
 
-	Blabla
+![alt text](wholepicture.png "Performance graph making the radius vary between 4 and 200")
+
+	
 
 
 #### Question 4

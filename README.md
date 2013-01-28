@@ -12,12 +12,26 @@
 
 Clearly (and succinctly) describe your algorithm, using words and/or high-level pseudo-code. Assume that Bresenham’s algorithm takes time *2πr* for a given *r*. For an *n × n* image input and an arbitrary but constant single radius input (ie *r = maxr = minr*):
 
-	Blabla
+	The algorithm used in the code provided finds a circle as follow:
+	- Tries finding a circle at r (*2πr*)
+	- Tries finding a circle at r - 1 (*2πr*)
+	- Tries finding a circle at r + 1 (*2πr*)
+
+	It tries to do it at all potential circle centers on the image. The coordinates used vary as follow (if image has size *w × h*):
+	r + 1 <= x <= w - (r + 1)
+	r + 1 <= y <= h - (r + 1)
+	
+	Thus it will parse (w - 2(r + 1)) × (h - 2(r + 1)) if it goes over the entire image.	
 
 
-(a) (**10**) Analyze the worst-case time complexity of your approach in terms of *n*. You must provide a clear description of how you derive the complexity. Provide proof of an appropriate complexity class.
+(a) (**10**) Analyze the worst-case time complexity of your approach in terms of *n*. You must provide a clear description of how you derive the complexity. Provide proof of an appropriate complexity class appropriate complexity class.
 
-	Blabla
+	In the worst case, the image is monochrome, and thus contain no informations allowing us to find circles. The algorithm will have to parse the entire image according to the bounds specified above, using Bresenham’s algorithm three times, trying to determine if a circle exist at this location.
+
+	Therefore the program will try (w - 2(r + 1)) × (h - 2(r + 1)) × 3(2πr) points.
+	with an *n × n* image, we get:
+	
+	the program will take time (h - 2(r + 1))^2 × 3(2πr) to end which correspond to a O(n^2) complexity.
 
 
 (b) (**5**) Analyze the best-case time complexity of your approach in terms of *n*. You must provide a clear description of how you derive the complexity. Provide proof of an appropriate complexity class.

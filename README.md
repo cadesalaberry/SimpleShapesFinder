@@ -12,62 +12,68 @@
 
 Clearly (and succinctly) describe your algorithm, using words and/or high-level pseudo-code. Assume that Bresenham’s algorithm takes time *2πr* for a given *r*. For an *n × n* image input and an arbitrary but constant single radius input (ie *r = maxr = minr*):
 
-	The algorithm used in the code provided finds a circle as follow:
+>The algorithm used in the code provided finds a circle as follow:
+
 	- Tries finding a circle at r (*2πr*)
 	- Tries finding a circle at r - 1 (*2πr*)
 	- Tries finding a circle at r + 1 (*2πr*)
 
-	It tries to do it at all potential circle centers on the image.
-	The coordinates used vary as follow (if image has size *w × h*):
+>It tries to do it at all potential circle centers on the image.
+The coordinates used vary as follow (if image has size *w × h*):
+
+
 	r + 1 <= x <= w - (r + 1)
 	r + 1 <= y <= h - (r + 1)
 	
-	Thus it will parse (w - 2(r + 1)) × (h - 2(r + 1)) if it goes over the entire image.	
+>Thus it will parse (w - 2(r + 1)) × (h - 2(r + 1)) if it goes over the entire image.	
 
 
 (a) **10** Analyze the worst-case time complexity of your approach in terms of *n*. You must provide a clear description of how you derive the complexity. Provide proof of an appropriate complexity class appropriate complexity class.
 
-	In the worst case, the image is monochrome, and thus contain no informations allowing us to find circles.
-	The algorithm will have to parse the entire image according to the bounds specified above,
-	using Bresenham’s algorithm three times, trying to determine if a circle exist at this location.
+>In the worst case, the image is monochrome, and thus contain no informations allowing us to find circles.
+The algorithm will have to parse the entire image according to the bounds specified above,
+using Bresenham’s algorithm three times, trying to determine if a circle exist at this location.
 
-	Therefore the program will try (w - 2(r + 1)) × (h - 2(r + 1)) × 3(2πr) points.
-	with an *n × n* image, we get:
+Therefore the program will try (w - 2(r + 1)) × (h - 2(r + 1)) × 3(2πr) points.
+with an *n × n* image, we get:
+
 	
-	The program will take time (n - 2(r + 1))^2 × 3(2πr) to end which correspond to a **O(6πrn^2)** complexity.
-	(All variables but *n* are constant.)
+
+>The program will take time (n - 2(r + 1))^2 × 3(2πr) to end which correspond to a **O(n^2)** complexity.
+(All variables but *n* are constant.)
 
 
 (b) **5** Analyze the best-case time complexity of your approach in terms of *n*. You must provide a clear description of how you derive the complexity. Provide proof of an appropriate complexity class.
 
-	In the best case, the second points he checks using Bresenham’s algorithm tells his that it is not a circle.
-	Then Bresenham’s algorithm will take time 1 to return.
+>In the best case, the second points he checks using Bresenham’s algorithm tells his that it is not a circle.
+Then Bresenham’s algorithm will take time 1 to return.
 	
-	However, the program will still have to parse the entire image to try out all the points, summing up to:
+>However, the program will still have to parse the entire image to try out all the points, summing up to:
 	(n - 2(r + 1))^2 × 1
 
-	The program will take time (n - 2(r + 1))^2 × 3(2πr) to end which correspond to a **O(n^2)** complexity.
+>The program will take time (n - 2(r + 1))^2 × 3(2πr) to end which correspond to a **O(n^2)** complexity as well.
 
 
 (c) **5** Suppose that *r* is not a constant, but rather a function of *n*. Is there an *r* that maximizes the worst-case time complexity for a given *n*? Justify your answer. 
 
-	We have seen previously that *r* reduces the number of values to parse from *n × n* to:
-	*(n - 2(r+1)) × (n - 2(r+1))*
-	
-	Also, finding out if a particular circle exist or not uses Bresenham’s algorithm three times.
-	The total time taken would then be given by the formula:
-	
-	*6πr(n - 2(r+1))^2*
-	
-	That expands to:
-	
-	*6 π n^2 r - 24 π n r^2 - 24 π n r + 24 π r^3 + 48 π r^2 + 24 π r*
+>We have seen previously that *r* reduces the number of values to parse from *n × n* to:
 
-	If we treat n as a constant, it simplifies to:
+	(n - 2(r+1)) × (n - 2(r+1))
 	
-	*24 pi r^3 + (48 π - 24 π n) r^2 + (6 π n^2 + 24 π) r*
+>Also, finding out if a particular circle exist or not uses Bresenham’s algorithm three times.
+The total time taken would then be given by the formula:
+
+	6πr(n - 2(r+1))^2
 	
-	Which is a polynomial of degree three that has a maxima.
+>That expands to:
+
+	6 π n^2 r - 24 π n r^2 - 24 π n r + 24 π r^3 + 48 π r^2 + 24 π r
+
+>If we treat n as a constant, it simplifies to:
+
+	24 pi r^3 + (48 π - 24 π n) r^2 + (6 π n^2 + 24 π) r
+
+>Which is a polynomial of degree three that has a maxima.
 
 
 #### Question 3
@@ -76,13 +82,13 @@ Clearly (and succinctly) describe your algorithm, using words and/or high-level 
 
 ![Click to see the graph](https://github.com/cadesalaberry/SimpleShapesFinder/blob/master/radius25.png "Performance graph making the radius constant but varying the working zone")
 
-	On the graph, the unit of time is milliseconds.
-	The x abscisse represent the number of pixel of the side of the working area.
-	The data for the graph has been collected using the shell script called profile.sh.
+>On the graph, the unit of time is milliseconds.
+The x abscisse represent the number of pixel of the side of the working area.
+The data for the graph has been collected using the shell script called profile.sh.
 
-	We get a graph following the trend of n^2 just as predicted. The bigger the area to work on is,
-	The longer it will take to the program to scan the entire image. As the radius is kept constant,
-	the time will evolve according to the area considered to work on.
+>We get a graph following the trend of n^2 just as predicted. The bigger the area to work on is,
+The longer it will take to the program to scan the entire image. As the radius is kept constant,
+the time will evolve according to the area considered to work on.
 
 
 (b) **5** Now, experimentally measure performance in terms of radius. Use image 3 again, analyzing the entire image, but varying radius from 4 up to 100. Again, plot performance and discuss the results. 

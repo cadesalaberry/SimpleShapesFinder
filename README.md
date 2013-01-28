@@ -85,16 +85,15 @@ Clearly (and succinctly) describe your algorithm, using words and/or high-level 
 	the time will evolve according to the area considered to work on.
 
 
-(b) **5** Now, experimentally measure performance in terms of radius. Use image 3 again, analyzing the entire image, but varying radius from 4 up to 200. Again, plot performance and discuss the results. 
+(b) **5** Now, experimentally measure performance in terms of radius. Use image 3 again, analyzing the entire image, but varying radius from 4 up to 100. Again, plot performance and discuss the results. 
 
-![Click to see the graph](https://github.com/cadesalaberry/SimpleShapesFinder/blob/master/wholepicture.png "Performance graph making the radius vary between 4 and 200")
+![Click to see the graph](https://github.com/cadesalaberry/SimpleShapesFinder/blob/master/wholepicture.png "Performance graph making the radius vary between 4 and 100")
 
-	On the graph, the unit of time is milliseconds.
-	The x abscisse represent the number of pixel of the side of the working area.
-	The data for the graph has been collected using the shell script called profile.sh.
-
-	As expected from question 2c, we see that even if r increases,
-	it is going to reach a max value after which the work needed to find circles will reduce in time.
+>On the graph, the unit of time is milliseconds.
+The x abscisse represent the number of pixel of the side of the working area.
+The data for the graph has been collected using the shell script called profile.sh.
+As expected from question 2c, we see that even if r increases,
+it is going to reach a max value after which the work needed to find circles will reduce in time.
 
 
 

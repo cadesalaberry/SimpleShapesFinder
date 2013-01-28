@@ -74,7 +74,7 @@ Clearly (and succinctly) describe your algorithm, using words and/or high-level 
 
 (a) **10** Experimentally measure the performance of your algorithm in relation to *n*. Use image 3 as input, and vary the last (two) command-line parameter(s) as a proxy for a range of image inputs of increasing size. Keep radius constant at 25. Be sure to measure only time to detect the circles, not the time to emit output. Discuss and explain the behaviour—does it match your calculated time complexity?
 
-![Click to see the graph](radius25.png "Performance graph making the radius constant but varying the working zone")
+![Click to see the graph](https://github.com/cadesalaberry/SimpleShapesFinder/blob/master/radius25.png "Performance graph making the radius constant but varying the working zone")
 
 	On the graph, the unit of time is milliseconds.
 	The x abscisse represent the number of pixel of the side of the working area.
@@ -87,9 +87,15 @@ Clearly (and succinctly) describe your algorithm, using words and/or high-level 
 
 (b) **5** Now, experimentally measure performance in terms of radius. Use image 3 again, analyzing the entire image, but varying radius from 4 up to 200. Again, plot performance and discuss the results. 
 
-![Click to see the graph](wholepicture.png "Performance graph making the radius vary between 4 and 200")
+![Click to see the graph](https://github.com/cadesalaberry/SimpleShapesFinder/blob/master/wholepicture.png "Performance graph making the radius vary between 4 and 200")
 
-	
+	On the graph, the unit of time is milliseconds.
+	The x abscisse represent the number of pixel of the side of the working area.
+	The data for the graph has been collected using the shell script called profile.sh.
+
+	As expected from question 2c, we see that even if r increases,
+	it is going to reach a max value after which the work needed to find circles will reduce in time.
+
 
 
 #### Question 4

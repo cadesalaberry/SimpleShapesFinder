@@ -39,7 +39,7 @@ public class Assig1 {
 			ArrayList<Circle> circles = new ArrayList<>();
 			
 			// Try all radii between minr and maxr
-			for (int radius = minr; radius < maxr; radius++) {
+			for (int radius = minr; radius <= maxr; radius++) {
 				
 				// Try all x coordinate potentially containing a circle of specified radius
 				for (int width = radius + 1; width < w - radius - 1; width++) {

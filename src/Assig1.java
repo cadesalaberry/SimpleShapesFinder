@@ -38,6 +38,7 @@ public class Assig1 {
 			
 			ArrayList<Circle> circles = new ArrayList<>();
 			
+			long timer = System.currentTimeMillis();
 			// Try all radii between minr and maxr
 			for (int radius = minr; radius <= maxr; radius++) {
 				
@@ -49,8 +50,8 @@ public class Assig1 {
 						
 						if (isCircle(width, height, radius, img)) {
 							
-							System.out.println("Circle Found: [" + width + "," + height
-									+ "] @r=" + radius);
+							//System.out.println("Circle Found: [" + width + "," + height
+							//		+ "] @r=" + radius);
 						
 							// Adds the found circle to the list
 							circles.add(new Circle(width, height, radius));
@@ -59,15 +60,16 @@ public class Assig1 {
 					}
 				}
 			}
-			
+			timer = System.currentTimeMillis() - timer;
+			System.out.println(timer);
 			// Draw the circles on the image
-			for (Circle circle : circles){
+			/*for (Circle circle : circles){
 				drawCircle(circle.cx, circle.cy, circle.r, img, g2);
 			}
 			
 			// write out the image
 			File outputfile = new File("outputimage.png");
-			ImageIO.write(img, "png", outputfile);
+			ImageIO.write(img, "png", outputfile);*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

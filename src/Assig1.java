@@ -1,7 +1,14 @@
+/**
+ * 
+ * @author cadesalaberry
+ * 
+ */
 import java.awt.image.*;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.io.*;
+import java.util.ArrayList;
+
 import javax.imageio.*;
 
 // Template for assignment 1
@@ -28,6 +35,9 @@ public class Assig1 {
 			int h = (args.length > 4) ? Integer.parseInt(args[4]) : img
 					.getHeight();
 			
+			
+			ArrayList<Circle> circles = new ArrayList<>();
+			
 			// Try all radii between minr and maxr
 			for (int radius = minr; radius < maxr; radius++) {
 				
@@ -35,24 +45,26 @@ public class Assig1 {
 				for (int width = radius + 1; width < w - radius - 1; width++) {
 					
 					// Try all y coordinate potentially containing a circle of specified radius
-					for (int height = radius + 1; height < h - radius - 1; height++) {
-
-						
+					for (int height = radius + 1; height < h - radius - 1; height++) {	
 						
 						if (isCircle(width, height, radius, img)) {
-
+							
 							System.out.println("Circle Found: [" + width + "," + height
 									+ "] @r=" + radius);
-							drawCircle(width, height, radius, img, g2);
+						
+							// Adds the found circle to the list
+							circles.add(new Circle(width, height, radius));
 
 						}
 					}
 				}
 			}
-
-			// call circle drawing algorithm
-			drawCircle(5, 5, 3, img, g2);
-
+			
+			// Draw the circles on the image
+			for (Circle circle : circles){
+				drawCircle(circle.cx, circle.cy, circle.r, img, g2);
+			}
+			
 			// write out the image
 			File outputfile = new File("outputimage.png");
 			ImageIO.write(img, "png", outputfile);
@@ -107,7 +119,18 @@ public class Assig1 {
 			g.drawLine(cx - y, cy - x, cx - y, cy - x);
 		}
 	}
-
+	/**
+	 * Checks if a circle exists at the given coordinates.
+	 * It verifies that the circle directly smaller and the one directly
+	 * bigger are of different color from the main circle.
+	 * This algorithm does not check for disks.
+	 * 
+	 * @param cx
+	 * @param cy
+	 * @param r
+	 * @param img
+	 * @return
+	 */
 	static boolean isCircle(int cx, int cy, int r, BufferedImage img) {
 
 		int externalColor = getColorOfCircle(cx, cy, r + 1, img);
@@ -120,12 +143,10 @@ public class Assig1 {
 		
 			// Checks that the inner circle if of different color.
 			if (isACircle(cx, cy, r - 1, img) && internalColor != circleColor) {
-				
-				//System.out.println("Circles inside and on r=" + r + "@" + cx + ";" + cy);
-				
+
 				// Checks that the outter circle is of different color.
 				if (isACircle(cx, cy, r + 1, img) && externalColor != circleColor) {
-					//System.out.println("Circle Found: " + "[" + cx + "," + cy + "] @r=" + r);
+
 					return true;
 				}
 			}
@@ -133,10 +154,32 @@ public class Assig1 {
 		
 		return false;
 	}
-
+	
+	/**
+	 * USE CAREFULLY !
+	 * Returns the color of a circle given his coordinates,
+	 * BUT DOES NOT CHECK IF IT IS A CIRCLE !
+	 * (Random values WILL be returned if it is not)
+	 * 
+	 * @param cx
+	 * @param cy
+	 * @param r
+	 * @param img
+	 * @return
+	 */
 	static int getColorOfCircle(int cx, int cy, int r, BufferedImage img) {
 		return img.getRGB(cx, cy + r);
 	}
+	/**
+	 * Checks if a circle exist at the given coordinates,
+	 * assuming that all the points constituting the circle are of the same color. 
+	 * 
+	 * @param cx
+	 * @param cy
+	 * @param r
+	 * @param img
+	 * @return
+	 */
 	static boolean isACircle(int cx, int cy, int r, BufferedImage img) {
 
 		int f = 1 - r;
@@ -173,7 +216,6 @@ public class Assig1 {
 			isCircle = isCircle && c == img.getRGB(cx + y, cy - x);
 			isCircle = isCircle && c == img.getRGB(cx - y, cy - x);
 		}
-		//System.out.println(isCircle);
 		return isCircle;
 	}
 }
